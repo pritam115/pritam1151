@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="theme-color" content="#ff6fa7" />
+  <title>For my favorite person</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="./style.css" />
+</head>
+
+
+<audio id="bgMusic" loop preload="auto">
+  <source src="./assets/music.mp3" type="audio/mpeg" />
+</audio>
+
+<body>
+  <canvas id="petalCanvas" aria-hidden="true"></canvas>
+
+  <div class="bg-blobs" aria-hidden="true">
+    <div class="blob b1"></div>
+    <div class="blob b2"></div>
+    <div class="blob b3"></div>
+  </div>
+
+  <main class="app">
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-mark">❤</div>
+        <div class="brand-text">
+          <div class="brand-title">For my favorite person</div>
+          <div class="brand-subtitle">A little surprise made with love by Pritam</div>
+        </div>
+      </div>
+<button class="ghost-btn" id="musicBtn" type="button" aria-pressed="false">
+  <span aria-hidden="true">🎵</span>
+  <span class="label">Music</span>
+</button>
+    </header>
+
+    <!-- SCREEN 1: LOGIN -->
+    <section class="card screen" id="screenLogin">
+      <div class="card-inner">
+        <h1 class="headline">Welcome 💗</h1>
+        <p class="muted">Login to unlock the surprise.</p>
+
+        <form class="form" id="loginForm" autocomplete="off">
+          <label class="field">
+            <span class="field-label">Username</span>
+            <input class="input" id="username" type="text" placeholder="Type your name" required />
+            <span class="field-help">Please enter your name with love</span>
+          </label>
+
+          <label class="field">
+            <span class="field-label">Password</span>
+            <div class="password-wrap">
+              <input class="input" id="password" type="password" placeholder="Type the secret" required />
+              <button class="mini-btn" id="togglePass" type="button">Show</button>
+            </div>
+            <span class="field-help">Enter the name of your love</span>
+          </label>
+
+          <button class="primary-btn" type="submit">
+            Unlock Surprise <span class="arrow" aria-hidden="true">→</span>
+          </button>
+
+          <p class="error" id="loginError" role="alert" aria-live="polite"></p>
+        </form>
+      </div>
+    </section>
+
+    <!-- SCREEN 2: CONGRATS -->
+    <section class="card screen" id="screenCongrats" hidden>
+      <div class="card-inner center">
+        <h2 class="big-title">Congratulations 🤍💙</h2>
+        <p class="muted big-muted">
+          Congratulations, you have entered into the heart of your love 💘💞
+        </p>
+        <button class="secondary-btn" id="toLoveQuestionBtn" type="button">Continue</button>
+      </div>
+    </section>
+
+    <!-- SCREEN 3: DO YOU LOVE ME -->
+    <section class="card screen" id="screenLoveQuestion" hidden>
+      <div class="card-inner center">
+        <h2 class="big-title">Do you love me? 💕</h2>
+        <p class="muted">Choose wisely 😌</p>
+
+        <div class="choice-row" id="loveChoiceArea">
+          <button class="choice-btn yes" id="loveYesBtn" type="button">Yes</button>
+          <button class="choice-btn no runaway" id="loveNoBtn" type="button" aria-disabled="true">No</button>
+        </div>
+
+        <p class="tiny muted"></p>
+      </div>
+    </section>
+
+    <!-- SCREEN 4: PICTURE AUTOPLAY -->
+    <section class="screen" id="screenGallery" hidden>
+      <div class="card hero-card">
+        <div class="hero">
+          <div class="hero-left">
+            <h2 class="hero-title">Our Moments ✨</h2>
+            <p class="hero-text">Sit back. Hold your breath.</p>
+            <div class="actions">
+              <button class="secondary-btn" id="replaySlideshowBtn" type="button">Replay Photos</button>
+              <button class="ghost-btn" id="logoutBtn" type="button">Logout</button>
+            </div>
+          </div>
+
+          <div class="hero-right" aria-hidden="true">
+            <div class="polaroid p1"></div>
+            <div class="polaroid p2"></div>
+            <div class="polaroid p3"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card gallery-card">
+        <div class="section-head">
+          <h3 class="section-title" id="momentTitle">Loading...</h3>
+          <p class="muted" id="momentDesc">Please wait...</p>
+        </div>
+
+        <div class="track-wrap">
+          <div class="track" id="track">
+            <figure class="slide"><img src="./images/1.jfif" alt="Moment 1" loading="lazy" /></figure>
+            <figure class="slide"><img src="./images/2.jfif" alt="Moment 2" loading="lazy" /></figure>
+            <figure class="slide"><img src="./images/3.jfif" alt="Moment 3" loading="lazy" /></figure>
+            <figure class="slide"><img src="./images/4.jfif" alt="Moment 4" loading="lazy" /></figure>
+            <figure class="slide"><img src="./images/5.jfif" alt="Moment 5" loading="lazy" /></figure>
+            <figure class="slide"><img src="./images/6.jfif" alt="Moment 6" loading="lazy" /></figure>
+            <figure class="slide"><img src="./images/7.jfif" alt="Moment 7" loading="lazy" /></figure>
+            <figure class="slide"><img src="./images/8.jfif" alt="Moment 8" loading="lazy" /></figure>
+            <figure class="slide"><img src="./images/9.jfif" alt="Moment 9" loading="lazy" /></figure>
+            <figure class="slide"><img src="./images/10.jfif" alt="Moment 10" loading="lazy" /></figure>
+            <figure class="slide"><img src="./images/11.jfif" alt="Moment 11" loading="lazy" /></figure>
+            <figure class="slide"><img src="./images/12.jfif" alt="Moment 12" loading="lazy" /></figure>
+          </div>
+        </div>
+
+        <div class="progress-row">
+          <div class="progress-track">
+            <div class="progress-bar" id="progressBar"></div>
+          </div>
+          <div class="muted small" id="slideCountText">0 / 12</div>
+        </div>
+
+        <div class="bottom-cta" id="exploreCta" hidden>
+          <button class="primary-btn" id="exploreMoreBtn" type="button">
+            Explore more ❤️ <span class="arrow" aria-hidden="true">→</span>
+          </button>
+          <p class="muted small">One more beautiful thing is waiting.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SCREEN 5: FINAL MESSAGE -->
+    <section class="screen" id="screenFinal" hidden>
+      <div class="card message-card">
+        <div class="section-head">
+          <h3 class="section-title">Happy 5th month Anniversary 💌</h3>
+          <p class="muted">This is for you.</p>
+        </div>
+
+        <div class="final-wrap">
+          <div class="sparkle" aria-hidden="true">✨</div>
+
+          <div class="letter">
+            <div class="letter-top">
+              <div class="stamp" aria-hidden="true">💖</div>
+              <div>
+                <div class="letter-title" id="finalTitle">To my favourite person(Pushpita)</div>
+                <div class="letter-sub" id="finalSub">Always and forever</div>
+              </div>
+            </div>
+
+            <div class="typewrap">
+              <p id="typedMessage" class="typed" aria-live="polite"></p>
+            </div>
+
+            <div class="letter-bottom">
+              <button class="secondary-btn" id="typeAgainBtn" type="button">Type Again</button>
+              <span class="signature" id="signature">— Yours</span>
+            </div>
+          </div>
+
+          <div class="final-actions">
+            <button class="ghost-btn" id="backToGalleryBtn" type="button">Back to Photos</button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="./script.js"></script>
+</body>
+</html>
